@@ -21,6 +21,12 @@ jobs:
     
       - name: Build
         run: npm run build # The build command of your project
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifact
+          path: out
 
   # Deploy job
   deploy:
@@ -40,6 +46,11 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifact
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2 # or the latest "vX.X.X" version tag for this action
