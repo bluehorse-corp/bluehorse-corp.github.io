@@ -1,10 +1,11 @@
-const isGithub = process.env.BUILD_ENV === 'github';
+// const isGithub = process.env.BUILD_ENV === 'github' || true;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: isGithub ? '/event.poomang.com' : undefined,
-  assetPrefix: isGithub ? '/event.poomang.com' : undefined,
+  images: { unoptimized: true },
+  // basePath: isGithub ? '/event.poomang.com' : undefined,
+  // assetPrefix: isGithub ? '/event.poomang.com' : undefined,
 }
 
 module.exports = nextConfig
